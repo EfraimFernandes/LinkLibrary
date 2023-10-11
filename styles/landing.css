@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@200;500&display=swap');
+
+:root {
+    --color1: #FFFFFF;
+    --color2: #F9F9F9;
+    --color3: #1B1C1D;
+    --color4: #949281;
+    --color5: #EDF0E4;
+    --color6: #edf0e4b0;
+    --color7: #4E575C;
+    --color8: #E9967A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Kodchasan', sans-serif;
+}
+
+body {
+    background-color: var(--color4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    background-color: var(--color5);
+    width: 93%;
+    height: 90px;
+    padding: 20px;
+    margin-top: 1.2%;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 600px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.buttons {
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+}
+
+.btn {
+    background: none;
+    border: 2px solid var(--color7);
+    padding: 12px 20px;
+    width: 200px;
+    margin: 10px;
+    cursor: pointer;
+    transition: color 0.4s linear;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: .3s all ease-in-out;
+    font-size: 1.2rem;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color7);
+    z-index: -1;
+    transition: left 0.5s;
+}
+
+.btn:hover {
+    color: var(--color2);
+    transform: scale(1.05);
+}
+
+.btn:hover::after {
+    left: 0;
+}
+  
+.btn:focus{
+    outline: none;
+}
+
+.btn2 {
+    background: none;
+    border: none;
+    color: var(--color7);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+}
+
+.btn2:hover {
+    color: var(--color3);
+    transform: scale(1.05);
+}
+
+.btn2:focus {
+    border: none;
+    outline: none;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 3% 0;
+}
+
+.textos {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    justify-content: space-around;
+    color: var(--color3);
+}
+
+.texto1 {
+    font-size: 4.5rem;
+    font-weight: 500;
+}
+
+.texto2 {
+    font-size: 3rem;
+    font-weight: 200;
+}
+
+.texto3 {
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.img {
+    width: 270px;
+    height: 690px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    color: var(--color5);
+    position: fixed;
+    bottom: 10px;
+}
+
+.textFooter {
+    font-weight: 200;
+    font-size: .9rem;
+}
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 1000px) {
+    .navbar {
+        background-color: var(--color5);
+        width: 93%;
+        height: 70px;
+        padding: 15px;
+        margin-top: 1%;
+    }
+    .logo {
+        width: 400px;
+        height: 50px;
+        margin-left: 20px;
+    }
+
+    .texto1 {
+        font-size: 4rem;
+        font-weight: 500;
+    }
+
+    .texto2 {
+        font-size: 2.5rem;
+        font-weight: 200;
+    }
+
+    .texto3 {
+        font-size: 1.5rem;
+        font-weight: 200;
+    }
+}
+
+@media(max-width: 780px) {
+    .navbar {
+        background-color: var(--color5);
+        width: 93%;
+        height: 60px;
+        padding: 15px;
+        margin-top: 1%;
+    }
+    .logo {
+        width: 400px;
+        height: 50px;
+        margin-left: 20px;
+    }
+
+    .texto1 {
+        font-size: 3.5rem;
+        font-weight: 500;
+    }
+
+    .texto2 {
+        font-size: 2rem;
+        font-weight: 200;
+    }
+
+    .texto3 {
+        font-size: 1.3rem;
+        font-weight: 100;
+    }
+    .buttons {
+        width: 250px;
+    }
+    .btn1 {
+        padding: 8px 14px;
+        width: 100px;
+    }
+    .btn2 {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 700px) {
+    .content {
+        position: relative;
+        top: 15%;
+    }
+    .img {
+        display: none;
+    }
+    .navbar {
+        height: 110px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .textos {
+        width: 90%;
+        height: 400px;
+    }
+}
+
+@media(max-width: 500px) {
+    .navbar {
+        width: 80%;
+        margin-top: 3%;
+    }
+    .logo {
+        width: 300px;
+        height: 40;
+    }
+    .footer{
+        flex-direction: column;
+    }
+}
