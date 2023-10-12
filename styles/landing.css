@@ -44,6 +44,7 @@ body {
 
 .buttons {
     display: flex;
+    align-items: center;
     width: 400px;
     justify-content: space-around;
 }
@@ -157,6 +158,10 @@ body {
 .textFooter {
     font-weight: 200;
     font-size: .9rem;
+}
+
+a {
+    text-decoration: none;
 }
 
 
