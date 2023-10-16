@@ -9,10 +9,10 @@
 <body>
     <div class="navbar">
         <img src="../images/LinkLibrary.png" alt="" class="logo">
-        <h2 class="nomeUsuario">Nome  Do Vagabundo <i class="fa-solid fa-caret-down"></i></h2>
+        <h2 id="nomeUsuario" class="nomeUsuario">Nome  Do Vagabundo <i class="fa-solid fa-caret-down"></i></h2>
     </div>
 
-    <div class="infouser">
+    <div id="infouser" class="infouser oculto">
         <h1 class=" email">emailqualquer@gmail.com</h1>
         <h2 class="opcoesUser"><i class="fa-regular fa-circle-question"></i>Faça uma pergunta</h2>
         <h2 class="opcoesUser"><i class="fa-solid fa-comment-dots"></i>Dê um feedback</h2>
@@ -22,7 +22,7 @@
     <div class="content">
 
         <div class="botao">
-            <button class="addLink">
+            <button class="addLink " id="open-modal">
                 <i class="fa-solid fa-plus"></i>
                 Adicionar Novo Link
             </button>
@@ -65,10 +65,25 @@
         </div>
     </div>
 
+    <div id="fade" class="hide"></div>
+    <div id="modal" class="hide">
+        <div class="modal-header">
+            <h2>Este é o Modal</h2>
+            <button id="close-modal">Fechar</button>
+        </div>
+        <div class="modal-body">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae consequuntur quidem officia eum eveniet doloremque voluptates 
+                incidunt, corrupti obcaecati assumenda id veritatis accusantium dignissimos? Nostrum odit pariatur dolorem commodi iure.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae consequuntur quidem officia eum eveniet doloremque voluptates 
+                incidunt, corrupti obcaecati assumenda id veritatis accusantium dignissimos? Nostrum odit pariatur dolorem commodi iure.</p>
+        </div>
+    </div>
+
     <footer class="footer">
         <h3 class="textFooter">© LinkLibrary 2023</h3>
         <h4 class="textFooter">By - Efraim | Giovana | Henrique | Mateus </h4>
     </footer>
 </body>
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
+<script src="../scripts/home.js"></script>
 </html>
