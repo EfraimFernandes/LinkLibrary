@@ -1,24 +1,20 @@
 const infouser = document.getElementById("infouser");
 const nomeUsuario = document.getElementById("nomeUsuario");
 
-// Adicione um ouvinte de evento de clique ao nomeUsuario
+
 nomeUsuario.addEventListener("mouseover", () => {
-  // Verifique se o infouser tem a classe "oculto"
     infouser.style.display = "flex"
 });
 
 infouser.addEventListener("mouseover", () => {
-  // Quando o mouse sai do elemento de gatilho, esconda o elemento-alvo novamente
   infouser.style.display = "flex";
 });
 
 nomeUsuario.addEventListener("mouseout", () => {
-  // Verifique se o infouser tem a classe "oculto"
     infouser.style.display = "none"
 });
 
 infouser.addEventListener("mouseout", () => {
-  // Quando o mouse sai do elemento de gatilho, esconda o elemento-alvo novamente
   infouser.style.display = "none";
 });
 
