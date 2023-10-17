@@ -9,6 +9,11 @@
 <body>
     <div class="navbar">
         <img src="../images/LinkLibrary.png" alt="" class="logo">
+        <div class="toggle">
+            <i class="fa-solid fa-moon toggle-icon"></i>
+            <i class="fa-regular fa-sun toggle-icon"></i>
+            <div class="toggle-ball"></div>
+        </div>
         <h2 id="nomeUsuario" class="nomeUsuario">Nome  Do Vagabundo <i class="fa-solid fa-caret-down"></i></h2>
     </div>
 
@@ -61,6 +66,36 @@
                         <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
+                <div class="linkContent">
+                    <div class="link">
+                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
+                        <a href="../index.html"><h5>https://youtube.com</h5></a>
+                    </div>
+                    <div class="options">
+                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="linkContent">
+                    <div class="link">
+                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
+                        <a href="../index.html"><h5>https://youtube.com</h5></a>
+                    </div>
+                    <div class="options">
+                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+                <div class="linkContent">
+                    <div class="link">
+                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
+                        <a href="../index.html"><h5>https://youtube.com</h5></a>
+                    </div>
+                    <div class="options">
+                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -68,15 +103,21 @@
     <div id="fade" class="hide"></div>
     <div id="modal" class="hide">
         <div class="modal-header">
-            <h2>Este é o Modal</h2>
-            <button id="close-modal">Fechar</button>
+            <h1>Novo Link</h1>
+            <button id="close-modal">Cancelar</button>
         </div>
         <div class="modal-body">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae consequuntur quidem officia eum eveniet doloremque voluptates 
-                incidunt, corrupti obcaecati assumenda id veritatis accusantium dignissimos? Nostrum odit pariatur dolorem commodi iure.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae consequuntur quidem officia eum eveniet doloremque voluptates 
-                incidunt, corrupti obcaecati assumenda id veritatis accusantium dignissimos? Nostrum odit pariatur dolorem commodi iure.</p>
+            <div class="label-container">
+                <input type="text" id="inputField" placeholder="">
+                <label for="inputFied">Nome do Link</label>
+            </div>
+            <div class="label-container">
+                <input type="password" id="inputField" placeholder="">
+                <label for="inputFied">URL</label>
+            </div>
+            <button class="salvar">Salvar</button>
         </div>
+
     </div>
 
     <footer class="footer">
