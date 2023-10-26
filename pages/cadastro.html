@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LL - Login</title>
+    <title>LL - Cadastro</title>
 
     <link rel="stylesheet" href="../styles/logAndSign.css">
 </head>
@@ -21,14 +21,14 @@
                 <label for="inputFied">Nome</label>
             </div>
             <div class="label-container">
-                <input type="text" id="inputField" placeholder="">
-                <label for="inputFied">Email</label>
+                <input type="text" id="email" placeholder="">
+                <label for="email">Email</label>
             </div>
             <div class="label-container">
-                <input type="password" id="inputField" placeholder="">
-                <label for="inputFied">Senha</label>
+                <input type="password" id="password" placeholder="">
+                <label for="password">Senha</label>
             </div>
-            <button class="btn">Cadastrar</button>
+            <button id="cadastrar"  class="btn">Cadastrar</button>
 
             <div class="option">
                 <h3>Já tem uma conta?</h3>
@@ -38,4 +38,60 @@
     </div>
 </body>
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+<script>
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDY91LEH4kKCkCrGRzAz-gVaI1mRbqUEVY",
+  authDomain: "linklibrary-13a78.firebaseapp.com",
+  projectId: "linklibrary-13a78",
+  storageBucket: "linklibrary-13a78.appspot.com",
+  messagingSenderId: "60208529988",
+  appId: "1:60208529988:web:7d77720d369ef0a3ebb211"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+
+document.querySelector("#cadastrar").addEventListener("click", function Cadastrar(){
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+  
+    // Initialize Firebase Authentication
+    const auth = firebase.auth();
+  
+    // Create a new user with email and password
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // User registration was successful
+        const user = userCredential.user;
+        // You can redirect the user to a different page or show a success message here
+
+        window.location.href = "./login.html";
+      })
+      .catch((error) => {
+        // Handle registration errors
+        const errorCode = error.code;
+        let errorMessage = error.message;
+
+        // Mapear códigos de erro para mensagens em português
+        const errorMessages = {
+          "auth/weak-password": "A senha deve ter no mínimo 6 caracteres",
+          "auth/email-already-in-use": "O email informado já está sendo usado por outra conta",
+          // Adicione mais mapeamentos de códigos de erro e mensagens aqui
+        };
+
+        // Verificar se há uma mensagem personalizada para o código de erro
+        if (errorMessages[errorCode]) {
+          errorMessage = errorMessages[errorCode];
+        }
+
+        alert("Erro ao cadastrar: " + errorMessage);
+        // Você pode exibir uma mensagem de erro personalizada em português para o usuário
+      });
+  });
+
+</script>
 </html>
