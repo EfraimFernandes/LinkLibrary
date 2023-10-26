@@ -98,19 +98,22 @@ html ::-webkit-scrollbar-track {
 .nomeUsuario {
     transition: .2s all ease-in-out;
     color: var(--color7);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .nomeUsuario:hover {
-    font-size: 1.52rem;
+    font-size: 1.02rem;
     cursor: pointer;
 }
 
 .infoUser {
-    width: 350px;
-    height: 210px;
+    width: 320px;
+    height: 150px;
     position: fixed;
     top: 7%;
-    right: 2%;
+    right: 4%;
     box-shadow: -1px 2px 5px var(--color5);
     border-radius: 15px;
     color: var(--color3);

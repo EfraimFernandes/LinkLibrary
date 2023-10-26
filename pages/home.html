@@ -14,14 +14,16 @@
             <i class="fa-regular fa-sun toggle-icon"></i>
             <div class="toggle-ball"></div>
         </div>
-        <h2 id="nomeUsuario" class="nomeUsuario">Nome  Do Vagabundo <i class="fa-solid fa-caret-down"></i></h2>
+        <div  class="nomeUsuario">
+            <h2 id="userEmail">Email  Do Vagabundo</h2>
+            <i class="fa-solid fa-caret-down"></i>
+        </div>
     </div>
 
     <div id="infouser" class="infouser oculto">
-        <h1 class=" email">emailqualquer@gmail.com</h1>
         <h2 class="opcoesUser"><i class="fa-regular fa-circle-question"></i>Faça uma pergunta</h2>
         <h2 class="opcoesUser"><i class="fa-solid fa-comment-dots"></i>Dê um feedback</h2>
-        <h2 class="opcoesUser"><i class="fa-solid fa-right-from-bracket"></i>Sair</h2>
+        <h2 id="logout" class="opcoesUser"><i class="fa-solid fa-right-from-bracket"></i>Sair</h2>
     </div>
 
     <div class="content">
@@ -127,4 +129,49 @@
 </body>
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
 <script src="../scripts/home.js"></script>
+<script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+<script>
+  // Seu web app's Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyDY91LEH4kKCkCrGRzAz-gVaI1mRbqUEVY",
+  authDomain: "linklibrary-13a78.firebaseapp.com",
+  projectId: "linklibrary-13a78",
+  storageBucket: "linklibrary-13a78.appspot.com",
+  messagingSenderId: "60208529988",
+  appId: "1:60208529988:web:7d77720d369ef0a3ebb211"
+};
+
+// Inicializar o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+  console.log("Antes do click");
+
+  // Verificar se o usuário está autenticado
+  const auth = firebase.auth();
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      // O usuário está autenticado, você pode acessar o email dele
+      const userEmail = user.email;
+      // Agora você pode exibir o email na sua página
+      document.getElementById("userEmail").textContent = userEmail;
+    } else {
+      // O usuário não está autenticado, talvez você queira redirecioná-lo para a página de login
+      window.location.href = "./login.html";
+    }
+  });
+
+  const logoutBtn = document.querySelector("#logout");
+  logoutBtn.addEventListener("click", () => {
+    auth.signOut().then(() => {
+      // Logout bem-sucedido, redirecione para a página de login
+      window.location.href = "./login.html";
+    }).catch((error) => {
+      // Lidar com erros, se houver
+      console.error("Erro ao fazer logout:", error);
+    });
+  });
+
+</script>
+
 </html>

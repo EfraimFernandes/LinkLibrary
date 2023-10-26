@@ -1,8 +1,8 @@
 const infouser = document.getElementById("infouser");
-const nomeUsuario = document.getElementById("nomeUsuario");
+const userEmail = document.getElementById("userEmail");
 
 
-nomeUsuario.addEventListener("mouseover", () => {
+userEmail.addEventListener("mouseover", () => {
     infouser.style.display = "flex"
 });
 
@@ -10,7 +10,7 @@ infouser.addEventListener("mouseover", () => {
   infouser.style.display = "flex";
 });
 
-nomeUsuario.addEventListener("mouseout", () => {
+userEmail.addEventListener("mouseout", () => {
     infouser.style.display = "none"
 });
 

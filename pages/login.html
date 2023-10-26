@@ -11,20 +11,21 @@
         <img class="img" src="../images/MulherNegraPraiaPorDoSol.jpeg" alt="...">
         <div class="formulario">
             <div class="cabecalho">
-                <a href="../index.html"><button class="back"><i class="fa-solid fa-arrow-left"></i> ir à página home</button></a>
+                <a href="../index.html"><button class="back"><i class="fa-solid fa-arrow-left"></i> ir à página inicial</button></a>
                 <img src="../images/LinkLibrary.png" alt="..." class="logo">
             </div>
             <h2 class="welcome">Bem-vindo de volta!</h2>
             <h1 class="title">Login</h1>
             <div class="label-container">
-                <input type="email" id="inputField" placeholder="">
-                <label for="inputFied">Email</label>
+                <input type="email" id="email" placeholder="">
+                <label for="email">Email</label>
             </div>
             <div class="label-container">
-                <input type="password" id="inputField" placeholder="">
-                <label for="inputFied">Senha</label>
+                <input type="password" id="password" placeholder="">
+                <label for="password">Senha</label>
             </div>
-            <a class="entrar" href="./home.html">
+            <!-- <button  class="btn">Entrar</button> -->
+            <a id="login" class="entrar">
                 <button class="btn">Entrar</button>
             </a>
 
@@ -36,4 +37,56 @@
     </div>
 </body>
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+<script>
+
+// Seu web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDY91LEH4kKCkCrGRzAz-gVaI1mRbqUEVY",
+  authDomain: "linklibrary-13a78.firebaseapp.com",
+  projectId: "linklibrary-13a78",
+  storageBucket: "linklibrary-13a78.appspot.com",
+  messagingSenderId: "60208529988",
+  appId: "1:60208529988:web:7d77720d369ef0a3ebb211"
+};
+
+// Inicializar o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+
+console.log("Antes do click");
+
+document.querySelector("#login").addEventListener("click", function Entrar() {
+    const email = document.querySelector("#email").value;
+    console.log(email)
+    const password = document.querySelector("#password").value;
+    console.log(password)
+    // Inicializar a autenticação Firebase
+    const auth = firebase.auth();
+
+    // Fazer login do usuário com email e senha
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Login do usuário bem-sucedido
+        const user = userCredential.user;
+        console.log("Usuário logado:", user);
+        // Você pode redirecionar o usuário para a página de perfil ou outra página após o login
+        window.location.href = "./home.html";
+      })
+    .catch((error) => {
+        // Lidar com erros de login
+        const errorCode = error.code;
+        let errorMessage = error.message;
+
+        if (errorCode === "auth/user-not-found") {
+            errorMessage = "Usuário não encontrado. Verifique o email e tente novamente.";
+        } else {
+            errorMessage = "Erro no login. Verifique o email e/ou a senha e tente novamente.";
+        }
+        
+        alert("Erro no login: " + errorMessage);
+        // Você pode exibir uma mensagem de erro ao usuário
+    });
+});
+</script>
 </html>
