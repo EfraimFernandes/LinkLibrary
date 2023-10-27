@@ -138,6 +138,7 @@
     padding: 12px 20px;
     width: 60%;
     height: 50px;
+    min-height: 50px;
     margin: 60px 0;
     cursor: pointer;
     transition: color 0.4s linear;
