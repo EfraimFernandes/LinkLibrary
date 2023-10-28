@@ -30,7 +30,7 @@
     <div class="content">
 
         <div class="botao">
-            <button class="addLink " id="open-modal">
+            <button class="addLink " id="open-modalAddLink">
                 <i class="fa-solid fa-plus"></i>
                 Adicionar Novo Link
             </button>
@@ -45,8 +45,8 @@
                         <a href="../index.html"><h5>https://youtube.com</h5></a>
                     </div>
                     <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                        <button id="open-modalEditLink" class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                        <button id="open-modalExcludeLink" class="excluirLink"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div class="linkContent">
@@ -104,12 +104,12 @@
     </div>
 
     <div id="fade" class="hide"></div>
-    <div id="modal" class="hide">
-        <div class="modal-header">
+    <div id="modalAddLink" class="hide">
+        <div class="modalAddLink-header">
             <h1>Novo Link</h1>
-            <button id="close-modal">Cancelar</button>
+            <button id="close-modalAddLink">Cancelar</button>
         </div>
-        <div class="modal-body">
+        <div class="modalAddLink-body">
             <div class="label-container">
                 <input type="text" id="inputField" placeholder="">
                 <label for="inputFied">Nome do Link</label>
@@ -120,7 +120,24 @@
             </div>
             <button class="salvar">Salvar</button>
         </div>
+    </div>
 
+    <div id="modalEditLink" class="hide">
+        <div class="modalEditLink-header">
+            <h1>Editar Link</h1>
+            <button id="close-modalEditLink">Cancelar</button>
+        </div>
+        <div class="modalEditLink-body">
+            <div class="label-container">
+                <input type="text" id="inputField" placeholder="">
+                <label for="inputFied">Nome do Link</label>
+            </div>
+            <div class="label-container">
+                <input type="password" id="inputField" placeholder="">
+                <label for="inputFied">URL</label>
+            </div>
+            <button class="salvar">Salvar</button>
+        </div>
     </div>
 
     <footer class="footer">
@@ -146,8 +163,6 @@
 
 // Inicializar o Firebase
 const app = firebase.initializeApp(firebaseConfig);
-  console.log("Antes do click");
-
   // Verificar se o usuário está autenticado
   const auth = firebase.auth();
   auth.onAuthStateChanged((user) => {
@@ -167,10 +182,7 @@ const app = firebase.initializeApp(firebaseConfig);
     auth.signOut().then(() => {
       // Logout bem-sucedido, redirecione para a página de login
       window.location.href = "./login.html";
-    }).catch((error) => {
-      // Lidar com erros, se houver
-      console.error("Erro ao fazer logout:", error);
-    });
+    })
   });
 
 </script>

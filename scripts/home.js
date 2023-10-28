@@ -18,19 +18,62 @@ infouser.addEventListener("mouseout", () => {
   infouser.style.display = "none";
 });
 
-const openModalButton = document.querySelector("#open-modal")
-const closeModalButton = document.querySelector("#close-modal")
-const modal = document.querySelector("#modal")
+
+
+
+
+
+
+
+
+
+
+
+const openmodalAddLinkButton = document.querySelector("#open-modalAddLink")
+const closemodalAddLinkButton = document.querySelector("#close-modalAddLink")
+const modalAddLink = document.querySelector("#modalAddLink")
 const fade = document.querySelector("#fade")
 
-const toggleModal = () => {
-  modal.classList.toggle("hide")
+const togglemodalAddLink = () => {
+  modalAddLink.classList.toggle("hide")
+  fade.classList.toggle("hide")
+  console.log("Aqui")
+}
+
+[openmodalAddLinkButton, closemodalAddLinkButton, fade].forEach((el) => {
+  console.log("Aquii")
+  el.addEventListener("click", () => togglemodalAddLink())
+})
+
+
+
+
+
+const openmodalEditLinkButton = document.querySelector("#open-modalEditLink")
+const closemodalEditLinkButton = document.querySelector("#close-modalEditLink")
+const modalEditLink = document.querySelector("#modalEditLink")
+
+const togglemodalEditLink = () => {
+  console.log("Aquiii")
+  modalEditLink.classList.toggle("hide")
   fade.classList.toggle("hide")
 }
 
-[openModalButton, closeModalButton, fade].forEach((el) => {
-  el.addEventListener("click", () => toggleModal())
+[openmodalEditLinkButton, closemodalEditLinkButton, fade].forEach((el) => {
+  console.log("Aquiiii")
+  el.addEventListener("click", () => togglemodalEditLink())
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,6 +124,4 @@ ball.addEventListener("click",()=>{
       document.documentElement.style.setProperty('--color13', '#f9f9f9');
       toggleColor = 1;
     }
-
-    console.log("Cores trocadas")
 })
