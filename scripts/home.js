@@ -37,11 +37,9 @@ const fade = document.querySelector("#fade")
 const togglemodalAddLink = () => {
   modalAddLink.classList.toggle("hide")
   fade.classList.toggle("hide")
-  console.log("Aqui")
 }
 
 [openmodalAddLinkButton, closemodalAddLinkButton, fade].forEach((el) => {
-  console.log("Aquii")
   el.addEventListener("click", () => togglemodalAddLink())
 })
 
@@ -52,15 +50,14 @@ const togglemodalAddLink = () => {
 const openmodalEditLinkButton = document.querySelector("#open-modalEditLink")
 const closemodalEditLinkButton = document.querySelector("#close-modalEditLink")
 const modalEditLink = document.querySelector("#modalEditLink")
+const fade2 = document.querySelector("#fade2")
 
 const togglemodalEditLink = () => {
-  console.log("Aquiii")
   modalEditLink.classList.toggle("hide")
-  fade.classList.toggle("hide")
+  fade2.classList.toggle("hide")
 }
 
-[openmodalEditLinkButton, closemodalEditLinkButton, fade].forEach((el) => {
-  console.log("Aquiiii")
+[openmodalEditLinkButton, closemodalEditLinkButton, fade2].forEach((el) => {
   el.addEventListener("click", () => togglemodalEditLink())
 })
 
