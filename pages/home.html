@@ -38,68 +38,9 @@
         
         <div class="links">
             <h1 class="titulo">Meus Links</h1>
-            <div class="linksContent">
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button id="open-modalEditLink" class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button id="open-modalExcludeLink" class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div class="linkContent">
-                    <div class="link">
-                        <a href="../index.html"><h3>Meu canal no YouTube</h3></a>
-                        <a href="../index.html"><h5>https://youtube.com</h5></a>
-                    </div>
-                    <div class="options">
-                        <button class="editarLink"><i class="fa-solid fa-pen"></i></button>
-                        <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-            </div>
+                 <div class="linksContent" id="linksContent">
+                   
+                 </div>
         </div>
     </div>
 
@@ -111,14 +52,14 @@
         </div>
         <div class="modalAddLink-body">
             <div class="label-container">
-                <input type="text" id="inputField" placeholder="">
-                <label for="inputFied">Nome do Link</label>
+                <input type="text" id="linkName" placeholder="">
+                <label for="linkName">Nome do Link</label>
             </div>
             <div class="label-container">
-                <input type="password" id="inputField" placeholder="">
-                <label for="inputFied">URL</label>
+                <input type="password" id="linkURL" placeholder="">
+                <label for="linkURL">URL</label>
             </div>
-            <button class="salvar">Salvar</button>
+            <button class="salvar" id="AddLink">Salvar</button>
         </div>
     </div>
 
@@ -131,7 +72,7 @@
         <div class="modalEditLink-body">
             <div class="label-container">
                 <input type="text" id="inputField" placeholder="">
-                <label for="inputFied">Novo título`</label>
+                <label for="inputFied">Novo título</label>
             </div>
             <div class="label-container">
                 <input type="password" id="inputField" placeholder="">

@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", function() {
+
+// PopUp do email
 const infouser = document.getElementById("infouser");
 const userEmail = document.getElementById("userEmail");
 
@@ -29,41 +32,89 @@ infouser.addEventListener("mouseout", () => {
 
 
 
-const openmodalAddLinkButton = document.querySelector("#open-modalAddLink")
-const closemodalAddLinkButton = document.querySelector("#close-modalAddLink")
-const modalAddLink = document.querySelector("#modalAddLink")
-const fade = document.querySelector("#fade")
+  //Modal AddLink
+  const openmodalAddLinkButton = document.querySelector("#open-modalAddLink")
+  const closemodalAddLinkButton = document.querySelector("#close-modalAddLink")
+  const modalAddLink = document.querySelector("#modalAddLink")
+  const fade = document.querySelector("#fade")
 
-const togglemodalAddLink = () => {
-  modalAddLink.classList.toggle("hide")
-  fade.classList.toggle("hide")
-}
+  const togglemodalAddLink = () => {
+    modalAddLink.classList.toggle("hide")
+    fade.classList.toggle("hide")
+  }
 
-[openmodalAddLinkButton, closemodalAddLinkButton, fade].forEach((el) => {
-  el.addEventListener("click", () => togglemodalAddLink())
-})
-
-
-
-
-
-const openmodalEditLinkButton = document.querySelector("#open-modalEditLink")
-const closemodalEditLinkButton = document.querySelector("#close-modalEditLink")
-const modalEditLink = document.querySelector("#modalEditLink")
-const fade2 = document.querySelector("#fade2")
-
-const togglemodalEditLink = () => {
-  modalEditLink.classList.toggle("hide")
-  fade2.classList.toggle("hide")
-}
-
-[openmodalEditLinkButton, closemodalEditLinkButton, fade2].forEach((el) => {
-  el.addEventListener("click", () => togglemodalEditLink())
-})
+  [openmodalAddLinkButton, closemodalAddLinkButton, fade].forEach((el) => {
+    el.addEventListener("click", () => togglemodalAddLink())
+  })
 
 
 
 
+  //Adicionar novo Link
+  const linkNameInput = document.getElementById("linkName");
+  const linkURLInput = document.getElementById("linkURL");
+  const linkList = document.getElementById("linksContent");
+  const saveLinkButton = document.getElementById("AddLink");
+  const links = [];
+
+  saveLinkButton.addEventListener("click", function() {
+    console.log("Save link foi clicado");
+      const name = linkNameInput.value;
+      const url = linkURLInput.value;
+
+      if (name && url) {
+          const link = {
+              name: name,
+              url: url
+          };
+          links.push(link);
+          // Adiciona o link à lista de links na página
+          const listItem = document.createElement("div");
+          listItem.innerHTML = `
+
+            <div class="linkContent">
+                      <div class="link">
+                          <a href="${url}"><h3>${name}</h3></a>
+                          <a href="${url}"><h5>${url}</h5></a>
+                      </div>
+                      <div class="options">
+                          <button id="open-modalEditLink" class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                          <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                      </div>
+            </div>
+            
+            `;
+          linkList.appendChild(listItem);
+
+        
+        
+          // Limpa os campos de entrada
+          linkNameInput.value = "";
+          linkURLInput.value = "";
+          
+          //Fecha o modal
+          modalAddLink.classList.add("hide");
+          fade.classList.add('hide')
+      }
+  });
+
+
+
+
+  //Modal EditLink
+  const openmodalEditLinkButton = document.getElementById("open-modalEditLink")
+  const closemodalEditLinkButton = document.getElementById("close-modalEditLink")
+  const modalEditLink = document.getElementById("modalEditLink")
+  const fade2 = document.getElementById("fade2")
+
+  const togglemodalEditLink = () => {
+    modalEditLink.classList.toggle("hide")
+    fade2.classList.toggle("hide")
+  }
+
+  [openmodalEditLinkButton, closemodalEditLinkButton, fade2].forEach((el) => {
+    el.addEventListener("click", () => togglemodalEditLink())
+  })
 
 
 
@@ -78,6 +129,9 @@ const togglemodalEditLink = () => {
 
 
 
+
+
+//Toogle color, modos light and dark
 let toggleColor = 2;
 const ball = document.querySelector(".toggle-ball");
 const items = document.querySelectorAll(
@@ -121,4 +175,8 @@ ball.addEventListener("click",()=>{
       document.documentElement.style.setProperty('--color13', '#f9f9f9');
       toggleColor = 1;
     }
+})
+
+
+
 })
