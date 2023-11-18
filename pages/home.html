@@ -56,29 +56,29 @@
                 <label for="linkName">Nome do Link</label>
             </div>
             <div class="label-container">
-                <input type="password" id="linkURL" placeholder="">
+                <input type="text" id="linkURL" placeholder="">
                 <label for="linkURL">URL</label>
             </div>
             <button class="salvar" id="AddLink">Salvar</button>
         </div>
     </div>
 
-    <div id="fade2" class="hide"></div>
+    <div onClick="modalDois()" id="fade2" class="hide"></div>
     <div id="modalEditLink" class="hide">
         <div class="modalEditLink-header">
             <h1>Editar Link</h1>
-            <button id="close-modalEditLink">Cancelar</button>
+            <button onClick="modalDois()" id="close-modalEditLink">Cancelar</button>
         </div>
         <div class="modalEditLink-body">
             <div class="label-container">
-                <input type="text" id="inputField" placeholder="">
-                <label for="inputFied">Novo título</label>
+                <input type="text" id="newLinkName" placeholder="">
+                <label for="newLinkName">Novo título</label>
             </div>
             <div class="label-container">
-                <input type="password" id="inputField" placeholder="">
-                <label for="inputFied">Nova URL</label>
+                <input type="url" id="newLinkURL" placeholder="">
+                <label for="newLinkURL">Nova URL</label>
             </div>
-            <button class="salvar">Salvar</button>
+            <button class="salvar" >Salvar</button>
         </div>
     </div>
 
@@ -87,6 +87,19 @@
         <h4 class="textFooter">By - Efraim | Giovana | Henrique | Mateus </h4>
     </footer>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
 <script src="../scripts/home.js"></script>
 <script src="https://kit.fontawesome.com/3d44487db1.js" crossorigin="anonymous"></script>
@@ -126,6 +139,169 @@ const app = firebase.initializeApp(firebaseConfig);
       window.location.href = "./login.html";
     })
   });
+
+
+
+
+
+
+function modalDois() {
+    //Modal EditLink
+  const openmodalEditLinkButton = document.getElementById("open-modalEditLink")
+  const closemodalEditLinkButton = document.getElementById("close-modalEditLink")
+  const modalEditLink = document.getElementById("modalEditLink")
+  const fade2 = document.getElementById("fade2")
+
+    modalEditLink.classList.toggle("hide")
+    fade2.classList.toggle("hide")
+}
+
+
+
+
+
+ //Adicionar novo Link
+ const linkNameInput = document.getElementById("linkName");
+  const linkURLInput = document.getElementById("linkURL");
+  const linkList = document.getElementById("linksContent");
+  const saveLinkButton = document.getElementById("AddLink");
+  const links = [];
+
+  function generateUniqueId() {
+      return Math.floor(Math.random() * 100000).toString();
+  }
+
+  saveLinkButton.addEventListener("click", function() {
+    console.log("Save link foi clicado");
+    const name = linkNameInput.value;
+    const url = linkURLInput.value;
+
+    console.log("Name:", name);
+    console.log("URL:", url);
+
+    if (name && url) {
+        const link = {
+            id: generateUniqueId(),
+            name: name,
+            url: url
+        };
+        links.push(link);
+
+        console.log("Conteúdo de links após adição:", links);
+
+        // Adiciona o link à lista de links na página
+        const listItem = document.createElement("div");
+        listItem.setAttribute("id", link.id);
+        listItem.innerHTML = `
+            <div class="linkContent">
+                <div class="link">
+                    <a href="${url}"><h3>${name}</h3></a>
+                    <a href="${url}"><h5>${url}</h5></a>
+                </div>
+                <div class="options">
+                    <button onclick="editLink('${link.id}')" id="open-modalEditLink editarLink" class="editarLink"><i class="fa-solid fa-pen"></i></button>
+                    <button class="excluirLink"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>`;
+        linkList.appendChild(listItem);
+
+        // Limpa os campos de entrada
+        linkNameInput.value = "";
+        linkURLInput.value = "";
+        
+        // Fecha o modal
+        modalAddLink.classList.add("hide");
+        fade.classList.add('hide');
+    }
+  });
+
+
+
+
+
+
+
+
+    let editingLinkId = null;
+
+    document.getElementById("modalEditLink").querySelector(".salvar").addEventListener("click", saveEditedLink);
+
+    function editLink(linkId) {
+        console.log("Chegou no editLink", linkId);
+        console.log("links",links)
+        // Encontre o link na lista com base no ID
+        const linkToEdit = links.find(link => link.id === linkId);
+        
+        console.log("Chegou no editLink1", linkToEdit);
+
+        if (linkToEdit) {
+            console.log("Chegou no if do editLink");
+            // Preencha o modal de edição com os dados do link
+            fillEditModal(linkToEdit);
+
+            // Ative o modo de edição
+            editingLinkId = linkId;
+
+            // Abra o modal de edição
+            modalDois();
+        }
+    }
+
+
+
+
+
+    // Função para preencher o modal de edição com os dados do link
+    function fillEditModal(link) {
+        console.log("Chegou no fillEditModal")
+        const newLinkNameInput = document.getElementById("newLinkName");
+        const newLinkURLInput = document.getElementById("newLinkURL");
+
+        // Preencha os campos do modal de edição com os valores atuais do link
+        newLinkNameInput.value = link.name;
+        newLinkURLInput.value = link.url;
+    }
+
+
+
+    function saveEditedLink() {
+        console.log("Chegou no saveEditedLink")
+        // Obtenha os novos valores do modal de edição
+        const newLinkName = document.getElementById("newLinkName").value;
+        const newLinkURL = document.getElementById("newLinkURL").value;
+        console.log("Chegou no saveEditedLink1")
+
+        // Encontre o link na lista com base no ID de edição
+        const linkToEdit = links.find(link => link.id === editingLinkId);
+        console.log("Chegou no saveEditedLink2", linkToEdit)
+
+
+        if (linkToEdit) {
+            console.log("Chegou no saveEditedLink3")
+
+            // Atualize os dados do link com os novos valores
+            linkToEdit.name = newLinkName;
+            linkToEdit.url = newLinkURL;
+
+            // Encontre o elemento do DOM correspondente ao link e atualize-o
+            const linkElement = document.getElementById(editingLinkId);
+            if (linkElement) {
+                linkElement.querySelector("h3").textContent = newLinkName;
+                linkElement.querySelector("h5").textContent = newLinkURL;
+                console.log("Chegou no saveEditedLink4")
+
+            }
+
+            // Restaure o estado de edição
+            editingMode = false;
+            editingLinkId = null;
+            console.log("Chegou no saveEditedLink5")
+            // Feche o modal de edição
+            modalDois();
+        }
+    }
+ 
+
 
 </script>
 
