@@ -4,23 +4,17 @@ document.addEventListener("DOMContentLoaded", function() {
 const infouser = document.getElementById("infouser");
 const userEmail = document.getElementById("userEmail");
 
+toggleVar = 0
 
-userEmail.addEventListener("mouseover", () => {
-    infouser.style.display = "flex"
+userEmail.addEventListener("click", () => {
+    if(toggleVar === 0){
+      infouser.style.display = "flex"
+      toggleVar = 1
+    } else if(toggleVar === 1){
+      infouser.style.display = "none"
+      toggleVar = 0
+    }
 });
-
-infouser.addEventListener("mouseover", () => {
-  infouser.style.display = "flex";
-});
-
-userEmail.addEventListener("mouseout", () => {
-    infouser.style.display = "none"
-});
-
-infouser.addEventListener("mouseout", () => {
-  infouser.style.display = "none";
-});
-
 
 
 
