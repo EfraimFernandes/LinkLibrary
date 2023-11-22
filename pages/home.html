@@ -201,12 +201,10 @@ function modalDois() {
   }
 
   saveLinkButton.addEventListener("click", function() {
-    console.log("Save link foi clicado");
+
     const name = linkNameInput.value;
     const url = linkURLInput.value;
 
-    console.log("Name:", name);
-    console.log("URL:", url);
 
     if (name && url) {
         const link = {
@@ -216,12 +214,12 @@ function modalDois() {
         };
         links.push(link);
 
-        console.log("Conteúdo de links após adição:", links);
+
 
         const user = auth.currentUser;
         if (user) {
-        const userLinksRef = db.ref(`user_links/${user.uid}`);
-        userLinksRef.push(link);
+            const userLinksRef = db.ref(`user_links/${user.uid}`);
+            userLinksRef.push(link);
         }
 
         // Limpa os campos de entrada
@@ -246,15 +244,15 @@ function modalDois() {
     document.getElementById("modalEditLink").querySelector(".salvar").addEventListener("click", saveEditedLink);
 
     function editLink(linkId) {
-        console.log("Chegou no editLink", linkId);
-        console.log("links",links)
+
+
         // Encontre o link na lista com base no ID
         const linkToEdit = links.find(link => link.id === linkId);
         
-        console.log("Chegou no editLink1", linkToEdit);
+
 
         if (linkToEdit) {
-            console.log("Chegou no if do editLink");
+
             // Preencha o modal de edição com os dados do link
             fillEditModal(linkToEdit);
 
@@ -272,7 +270,7 @@ function modalDois() {
 
     // Função para preencher o modal de edição com os dados do link
     function fillEditModal(link) {
-        console.log("Chegou no fillEditModal")
+
         const newLinkNameInput = document.getElementById("newLinkName");
         const newLinkURLInput = document.getElementById("newLinkURL");
 
@@ -284,19 +282,19 @@ function modalDois() {
 
 
     function saveEditedLink() {
-        console.log("Chegou no saveEditedLink")
+
         // Obtenha os novos valores do modal de edição
         const newLinkName = document.getElementById("newLinkName").value;
         const newLinkURL = document.getElementById("newLinkURL").value;
-        console.log("Chegou no saveEditedLink1")
+
 
         // Encontre o link na lista com base no ID de edição
         const linkToEdit = links.find(link => link.id === editingLinkId);
-        console.log("Chegou no saveEditedLink2", linkToEdit)
+
 
 
         if (linkToEdit) {
-            console.log("Chegou no saveEditedLink3")
+
 
             // Atualize os dados do link com os novos valores
             linkToEdit.name = newLinkName;
@@ -307,14 +305,14 @@ function modalDois() {
             if (linkElement) {
                 linkElement.querySelector("h3").textContent = newLinkName;
                 linkElement.querySelector("h5").textContent = newLinkURL;
-                console.log("Chegou no saveEditedLink4")
+
 
             }
 
             // Restaure o estado de edição
             editingMode = false;
             editingLinkId = null;
-            console.log("Chegou no saveEditedLink5")
+
             // Feche o modal de edição
             modalDois();
         }
@@ -340,25 +338,36 @@ if (user) {
 }
 
 function excluirLink(linkId) {
-  console.log("Chamada para excluirLink:", linkId);
 
   // Obtém a referência do usuário autenticado
   const user = auth.currentUser;
-if (user) {
-  const userLinksRef = db.ref(`user_links/${user.uid}`);
 
-  userLinksRef.on("child_removed", (snapshot) => {
-    const linkId = snapshot.key;
-    const linkElement = document.getElementById(String(linkId)); // Converta para string
+  if (user) {
+    const userLinksRef = db.ref(`user_links/${user.uid}`);
 
-    // Verifique se o elemento existe antes de removê-lo
-    if (linkElement) {
-      linkElement.remove();
-    } else {
-      console.warn(`Elemento com id ${linkId} não encontrado.`);
-    }
-  });
-}
+    // Use once para obter uma leitura única dos dados
+    userLinksRef.once("value")
+      .then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          const link = childSnapshot.val();
+
+          // Verifica se o ID do link corresponde ao link que queremos excluir
+          if (link.id === linkId) {
+            // Remove o link do banco de dados
+            childSnapshot.ref.remove()
+              .then(() => {
+
+              })
+              .catch((error) => {
+                console.error("Erro ao remover o link:", error);
+              });
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Erro ao obter os links do usuário:", error);
+      });
+  }
 }
 
 </script>
