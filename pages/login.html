@@ -55,7 +55,7 @@ const firebaseConfig = {
 // Inicializar o Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-document.querySelector("#login").addEventListener("click", function Entrar() {
+function Entrar() {
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     // Inicializar a autenticação Firebase
@@ -83,6 +83,17 @@ document.querySelector("#login").addEventListener("click", function Entrar() {
         alert("Erro no login: " + errorMessage);
         // Você pode exibir uma mensagem de erro ao usuário
     });
+};
+
+document.querySelector("#login").addEventListener("click", () => {
+    Entrar()
+})
+
+
+document.getElementById("password").addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        Entrar();
+    }
 });
 </script>
 </html>

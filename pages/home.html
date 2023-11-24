@@ -232,6 +232,42 @@ function modalDois() {
     }
   });
 
+  
+document.getElementById("linkURL").addEventListener("keyup", function() {
+
+  if (event.keyCode === 13) {
+    const name = linkNameInput.value;
+  const url = linkURLInput.value;
+
+    if (name && url) {
+        const link = {
+            id: generateUniqueId(),
+            name: name,
+            url: url
+        };
+        links.push(link);
+
+
+
+        const user = auth.currentUser;
+        if (user) {
+            const userLinksRef = db.ref(`user_links/${user.uid}`);
+            userLinksRef.push(link);
+        }
+
+        // Limpa os campos de entrada
+        linkNameInput.value = "";
+        linkURLInput.value = "";
+        
+        // Fecha o modal
+        modalAddLink.classList.add("hide");
+        fade.classList.add('hide');
+    }
+  }
+
+
+});
+
 
 
 
@@ -318,6 +354,12 @@ function modalDois() {
         }
     }
  
+document.getElementById("newLinkURL").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+      saveEditedLink();
+  }
+});
+
 
     // Adicione um ouvinte para as alterações nos links do usuário
 const user = auth.currentUser;

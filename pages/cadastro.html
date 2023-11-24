@@ -52,7 +52,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-document.querySelector("#cadastrar").addEventListener("click", function Cadastrar(){
+function Cadastrar(){
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
   
@@ -88,7 +88,17 @@ document.querySelector("#cadastrar").addEventListener("click", function Cadastra
         alert("Erro ao cadastrar: " + errorMessage);
         // Você pode exibir uma mensagem de erro personalizada em português para o usuário
       });
-  });
+  }
 
+document.querySelector("#cadastrar").addEventListener("click", () => {
+  Cadastrar()
+} );
+
+
+document.getElementById("password").addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+      Cadastrar();
+  }
+});
 </script>
 </html>
