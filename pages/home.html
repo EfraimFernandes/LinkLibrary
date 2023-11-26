@@ -160,8 +160,8 @@ function createLinkElement(link) {
   listItem.innerHTML = `
     <div class="linkContent">
       <div class="link">
-        <a href="${link.url}"><h3>${link.name}</h3></a>
-        <a href="${link.url}"><h5>${link.url}</h5></a>
+        <a href="${link.url}" target="_blank"><h3>${link.name}</h3></a>
+        <a href="${link.url}" target="_blank"><h5>${link.url}</h5></a>
       </div>
       <div class="options">
         <button onclick="editLink('${link.id}')" id="open-modalEditLink editarLink" class="editarLink"><i class="fa-solid fa-pen"></i></button>
